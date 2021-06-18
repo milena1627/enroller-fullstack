@@ -26,32 +26,38 @@
         props: ['username'],
         data() {
             return {
-                meetings: [],
-                 message: '',
-                isError: false
+                meetings: []
             };
         },
-        methods: {
-            addNewMeeting(meeting) {
-                this.clearMessage();
-                this.$http.post('meetings', meeting)
-                    .then(response => {
-                        meeting.id = response.data;
-                        this.meetings.push(meeting);
-                        this.success('Spotkanie zostało dodane. Możesz się zapisać.');
-                    })
-                    .catch(response => this.failure('Błąd przy dodawaniu spotkania. Kod odpowiedzi: ' + response.status));
+
+
+      mounted() {
+            this.$http.get('meetings').then(response => {
+                this.meetings = response.body;
+            });
+        },  
+
+      methods: {
+               addNewMeeting(meeting) {
+                this.$http.post('meetings', meeting).then(response => {
+                    const addedMeeting = response.body;
+                    this.meetings.push(addedMeeting);
+                });
             },
-            
             addMeetingParticipant(meeting) {
-                meeting.participants.push(this.username);
+                this.$http.post(`meetings/${meeting.id}/participants`)
+                    .then(response => meeting.participants.push(response.body));
             },
             removeMeetingParticipant(meeting) {
-                meeting.participants.splice(meeting.participants.indexOf(this.username), 1);
+                this.$http.delete(`meetings/${meeting.id}/participants/me`)
+                    .then(() => meeting.participants.splice(meeting.participants.map(p => p.login).indexOf(this.username), 1));
+
             },
             deleteMeeting(meeting) {
-                this.meetings.splice(this.meetings.indexOf(meeting), 1);
-            }
-        }
+               this.$http.delete(`meetings/${meeting.id}`)
+               .then(() => this.meetings.splice(this.meetings.indexOf(meeting), 1));            }
+        }  
+       
     }
+
 </script>

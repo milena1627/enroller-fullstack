@@ -6,8 +6,10 @@
       <input type="text" v-model="newMeeting.name">
       <label>Opis</label>
       <textarea v-model="newMeeting.description"></textarea>
+   <label>Data</label>
+      <input type="date" v-model="newMeeting.date"></input>
       <button>Dodaj</button>
-      <span class="error" v-if="error">Spotkanie musi mieć nazwę!</span>
+      <span class="error" v-if="error">Spotkanie musi mieć nazwę i date!</span>
     </form>
     <button @click="adding = true" v-else>Dodaj nowe spotkanie</button>
   </div>
@@ -17,29 +19,22 @@
     export default {
         data() {
             return {
-                newMeeting: {participants: []},
+                newMeeting: {},
                 adding: false,
                 error: false
             };
         },
         methods: {
-            addNewMeeting() {
+                  addNewMeeting() {
                 this.error = false;
-                if (this.newMeeting.title) 
-                {this.$http.post('meetings', this.newMeeting)
-                    .then(() => {
-                        this.success('Spotkanie dodane.');
-                        this.registering = false;
-                    })
-                .catch(response => this.failure('Błąd przy dodawaniu spotkania: ' + response.status));
+                if (this.newMeeting.title || this.newMeeting.date) {
                     this.$emit('added', this.newMeeting);
-                    this.newMeeting = {participants: []};
+                    this.newMeeting = {};
                     this.adding = false;
                 } else {
                     this.error = true;
+                }
             }
-            
-          }
         }
     }
 </script>

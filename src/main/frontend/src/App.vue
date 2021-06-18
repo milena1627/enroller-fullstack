@@ -24,7 +24,6 @@
     import LoginForm from "./LoginForm";
     import MeetingsPage from "./meetings/MeetingsPage";
     import Vue from "vue";
-
     export default {
         components: {LoginForm, MeetingsPage},
         data() {
@@ -75,21 +74,8 @@
             },
             clearMessage() {
                 this.message = undefined;
-
             }
         },
-
-      /* addNewMeeting() {
-                this.clearMessage();
-                this.$http.post('meetings', meeting)
-                    .then(() => {
-                        this.success('Spotkanie dodane.');
-                        this.registering = false;
-                    })
-                    .catch(response => this.failure('Błąd przy dodawaniu spotkania: ' + response.status));
-            }
-        },*/
-
         mounted() {
             const username = localStorage.getItem('username');
             const token = localStorage.getItem('token');
@@ -105,8 +91,6 @@
             }
         }
     };
-
-
 </script>
 
 <style>
@@ -114,11 +98,9 @@
     max-width: 1000px;
     margin: 0 auto;
   }
-
   .logo {
     vertical-align: middle;
   }
-
   .alert {
     padding: 10px;
     margin-bottom: 10px;
@@ -132,7 +114,5 @@
     background: indianred;
     border-color: darken(indianred, 10%);
     color: white;
-
   }
 </style>
-

@@ -1,6 +1,7 @@
 package com.company.enroller.persistence;
 
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.AnnotationConfiguration;
 
@@ -19,6 +20,7 @@ public class HibernateUtil {
     public static SessionFactory getSessionFactory() {
         return sessionFactory;
     }
+    
 
     public static void shutdown() {
         getSessionFactory().close();
