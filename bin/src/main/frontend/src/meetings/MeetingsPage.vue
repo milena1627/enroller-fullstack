@@ -26,23 +26,13 @@
         props: ['username'],
         data() {
             return {
-                meetings: [],
-                 message: '',
-                isError: false
+                meetings: []
             };
         },
         methods: {
             addNewMeeting(meeting) {
-                this.clearMessage();
-                this.$http.post('meetings', meeting)
-                    .then(response => {
-                        meeting.id = response.data;
-                        this.meetings.push(meeting);
-                        this.success('Spotkanie zostało dodane. Możesz się zapisać.');
-                    })
-                    .catch(response => this.failure('Błąd przy dodawaniu spotkania. Kod odpowiedzi: ' + response.status));
+                this.meetings.push(meeting);
             },
-            
             addMeetingParticipant(meeting) {
                 meeting.participants.push(this.username);
             },

@@ -75,21 +75,8 @@
             },
             clearMessage() {
                 this.message = undefined;
-
             }
         },
-
-      /* addNewMeeting() {
-                this.clearMessage();
-                this.$http.post('meetings', meeting)
-                    .then(() => {
-                        this.success('Spotkanie dodane.');
-                        this.registering = false;
-                    })
-                    .catch(response => this.failure('Błąd przy dodawaniu spotkania: ' + response.status));
-            }
-        },*/
-
         mounted() {
             const username = localStorage.getItem('username');
             const token = localStorage.getItem('token');
@@ -105,8 +92,6 @@
             }
         }
     };
-
-
 </script>
 
 <style>

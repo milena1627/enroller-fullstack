@@ -25,21 +25,14 @@
         methods: {
             addNewMeeting() {
                 this.error = false;
-                if (this.newMeeting.title) 
-                {this.$http.post('meetings', this.newMeeting)
-                    .then(() => {
-                        this.success('Spotkanie dodane.');
-                        this.registering = false;
-                    })
-                .catch(response => this.failure('Błąd przy dodawaniu spotkania: ' + response.status));
+                if (this.newMeeting.name) {
                     this.$emit('added', this.newMeeting);
                     this.newMeeting = {participants: []};
                     this.adding = false;
                 } else {
                     this.error = true;
+                }
             }
-            
-          }
         }
     }
 </script>
