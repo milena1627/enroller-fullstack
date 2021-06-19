@@ -45,7 +45,7 @@
                 });
             },
             addMeetingParticipant(meeting) {
-                this.$http.post(`meetings/${meeting.id}/participants`)
+                this.$http.post(`meetings/${meeting.id}/participants/${this.username}`)
                     .then(response => meeting.participants.push(response.body));
             },
             removeMeetingParticipant(meeting) {

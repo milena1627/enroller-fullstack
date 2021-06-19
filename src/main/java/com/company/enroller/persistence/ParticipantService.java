@@ -28,6 +28,11 @@ public class ParticipantService {
         return (Participant) connector.getSession().get(Participant.class, login);
     }
 
+    
+    public Participant findById(int id) {
+        return (Participant) connector.getSession().get(Participant.class, id);
+    }
+    
     public Participant add(Participant participant) {
         String hashedPassword = passwordEncoder.encode(participant.getPassword());
         participant.setPassword(hashedPassword);

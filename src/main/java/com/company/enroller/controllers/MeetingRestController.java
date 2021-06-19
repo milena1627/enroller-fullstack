@@ -37,7 +37,7 @@ public class MeetingRestController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	public ResponseEntity<?> getMeeting(@PathVariable("id") long id) {
-		Meeting meeting = meetingService.findByID(id);
+		Meeting meeting = meetingService.findById(id);
 		if (meeting == null) {
 			return new ResponseEntity<String>("Unable to find meeting with id" + id, HttpStatus.NOT_FOUND);
 		}
@@ -59,7 +59,7 @@ public class MeetingRestController {
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteMeeting(@PathVariable("id") long id) {
-		Meeting meeting = meetingService.findByID(id);
+		Meeting meeting = meetingService.findById(id);
 		if (meeting == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
@@ -70,13 +70,14 @@ public class MeetingRestController {
 	
 	//dodawanie uzytkownika do spotkania
 	
-	@RequestMapping(value = "/{id}/participants", method = RequestMethod.POST)
-	public ResponseEntity<?> addParticipantToMeeting(@PathVariable("id") long id, @RequestBody Participant participant) {
-		Meeting meeting = meetingService.findByID(id);
+	@RequestMapping(value = "/{id}/participants/{username}", method = RequestMethod.POST)
+	public ResponseEntity<?> addParticipantToMeeting(@PathVariable("id") long id, @PathVariable("username") String username) {
+		Meeting meeting = meetingService.findById(id);
+		Participant user = participantService.findByLogin(username);
 		if (meeting == null) {
 			return new ResponseEntity<String>("Unable to add participant as meeting not exists", HttpStatus.NOT_FOUND);
 		}
-		meeting.addParticipant(participant);
+		meeting.addParticipant(user);
 		return new ResponseEntity<Meeting>(meeting, HttpStatus.CREATED);
 	}
 	
@@ -100,7 +101,7 @@ public class MeetingRestController {
 	@RequestMapping(value = "/{id}/participants", method = RequestMethod.DELETE)
 	public ResponseEntity<?> removeParticicpantFromMeeting(@PathVariable("id") long id,
 			@RequestBody Participant participant) {
-		Meeting meeting = meetingService.findByID(id);
+		Meeting meeting = meetingService.findById(id);
 		if (meeting == null) {
 			return new ResponseEntity<String>("Unable to remove participant to meeting that does not exist",
 					HttpStatus.NOT_FOUND);

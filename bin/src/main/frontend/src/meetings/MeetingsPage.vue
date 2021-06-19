@@ -34,7 +34,13 @@
                 this.meetings.push(meeting);
             },
             addMeetingParticipant(meeting) {
-                meeting.participants.push(this.username);
+                console.log('123')
+                // meeting.participants.push(this.username);
+                this.$http.post(`meetings/${meeting}/participants/${username}`)
+                    .then(() => {
+                        
+                    })
+                    .catch(response => this.failure('Błąd przy zakładaniu dodawanie do spotkania. Kod odpowiedzi: ' + response.status));
             },
             removeMeetingParticipant(meeting) {
                 meeting.participants.splice(meeting.participants.indexOf(this.username), 1);
