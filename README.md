@@ -1,28 +1,17 @@
-# Enroller Fullstack
+Enroller FullStack
 
-Witaj programisto! Dzięki temu projektowi zostaniesz *full-stack developerem*.
+Enroller FullStack Enroller is an assignment, which was required to pass the "Web applications design" classes. This program was written in Java, Spring, Hibernate frameworks (back-end) and Vue.js (front-end) and it was deployed on Heroku.
 
+https://enroller-fullstack-final-mg.herokuapp.com/
 
-## Przygotowanie
+The project's requirements are:
 
-Zaimportuj projekt do ulubionego IDE (np. IntelliJ, Eclipse, VS Code).
+    user registering
+    user logging in/ logging out
+    adding and reflecting the list of already added meetings
+    removing the meetings
+    enrolling on the meetings (the funcionality works only in back-end)
 
-## Backend
+The tool used to test REST API was Postman.
 
-Uruchom aplikację Springową - klasa `App`.
-
-
-## Frontend
-
-Źródła aplikacji frontendowej są w `src/main/frontend`. Wykonaj tam
-
-```
-npm install
-npm run serve
-```
-
-## Budowanie aplikacji
-
-Wszystko jest skonfigurowane tak, by `mvn package` przygotował
-gotową do uruchomienia aplikację. Dzięki temu powinien działać
-np. deploy na Heroku - spróbuj!
+#To check the code of my project please check the 'authorization' branch.#
