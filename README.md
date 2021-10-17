@@ -14,4 +14,5 @@ The project's requirements are:
 
 The tool used to test REST API was Postman.
 
-#To check the code of my project please check the 'authorization' branch.#
+To check the code of my project please check the 'authorization' branch.
+
