@@ -11,9 +11,9 @@ The project's requirements are:
     user logging in/ logging out
     adding and reflecting the list of already added meetings
     removing the meetings
-    enrolling on the meetings (the funcionality works only in back-end)
+    enrolling on the meetings (the funcionality works only in back-end) 
 
-The tool used to test REST API was Postman.
+Postman was used to test REST API commands.
 
 
 
